@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F5EDD8">
+  <title>Mis XV · Zoe Valentina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── VARIABLES ─────────────────────────────────────── */
+    :root {
+      --cream:      #F5EDD8;
+      --parchment:  #EDE0C4;
+      --gold:       #B8882A;
+      --gold-lt:    #D4AF37;
+      --gold-pale:  #EAD98C;
+      --blue:       #7BA3C0;
+      --blue-lt:    #A8C5D8;
+      --brown-dk:   #2C1810;
+      --brown:      #3A2010;
+      --brown-lt:   #5C3822;
+    }
+
+    /* ── RESET ─────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background-color: var(--cream);
+      color: var(--brown-dk);
+      overflow-x: hidden;
+    }
+
+    /* ── DAMASK BACKGROUND ─────────────────────────────── */
+    .damask {
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse 60px 60px at 50% 50%, rgba(123,163,192,0.07) 0%, transparent 100%),
+        repeating-linear-gradient( 45deg, rgba(123,163,192,0.055) 0, rgba(123,163,192,0.055) 1px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, rgba(123,163,192,0.055) 0, rgba(123,163,192,0.055) 1px, transparent 0, transparent 50%);
+      background-size: auto, 36px 36px, 36px 36px;
+    }
+
+    /* ── BANDS / DIVIDERS ──────────────────────────────── */
+    .band {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-lt) 50%, var(--gold) 70%, transparent 100%);
+      opacity: .45;
+    }
+
+    .ornament-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      margin: 22px 0;
+    }
+    .ornament-row::before,
+    .ornament-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .ornament-row span { font-size: 18px; }
+
+    /* ── TYPOGRAPHY ────────────────────────────────────── */
+    .f-script  { font-family: 'Great Vibes', cursive; }
+    .f-display { font-family: 'Cinzel', serif; }
+
+    /* ── REVEAL ANIMATIONS ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .85s ease, transform .85s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 90px;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-frame {
+      position: relative;
+      border: 1px solid var(--gold);
+      padding: 72px 28px 44px;
+      max-width: 400px;
+      width: 100%;
+      background: rgba(255,253,245,.55);
+      backdrop-filter: blur(4px);
+      overflow: visible;
+      box-shadow:
+        0 0 0 8px rgba(184,136,42,.10),
+        0 0 0 16px rgba(184,136,42,.05),
+        inset 0 0 50px rgba(255,253,245,.4);
+    }
+    .hero-frame::before { content: ''; position: absolute; inset: -7px;  border: 1px solid rgba(184,136,42,.35); }
+    .hero-frame::after  { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(184,136,42,.18); }
+
+
+    /* corona centrada arriba */
+    .hero-crown-wrap {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: 5;
+      pointer-events: none;
+      width: 72px;
+    }
+    .hero-crown-wrap img { width: 100%; display: block; }
+
+    /* rosas en las 4 esquinas */
+    .hero-rose {
+      position: absolute;
+      width: 170px;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .hero-rose img { width: 100%; display: block; }
+    .hero-rose.tl { top: -15px;    left: -15px;  transform: scaleY(-1); }
+    .hero-rose.tr { top: -15px;    right: -15px; transform: scale(-1,-1); }
+    .hero-rose.bl { bottom: -15px; left: -15px; }
+    .hero-rose.br { bottom: -15px; right: -15px; transform: scaleX(-1); }
+
+    @media (max-width: 440px) {
+      .hero-crown-wrap { width: 56px; top: 10px; }
+      .hero-rose { width: 125px; }
+    }
+
+    /* corner pieces */
+    .co {
+      position: absolute;
+      font-size: 22px;
+      color: var(--gold);
+      line-height: 1;
+      opacity: .8;
+    }
+    .co.tl { top: 10px;  left: 10px; }
+    .co.tr { top: 10px;  right: 10px; transform: scaleX(-1); }
+    .co.bl { bottom: 10px; left: 10px;  transform: scaleY(-1); }
+    .co.br { bottom: 10px; right: 10px; transform: scale(-1); }
+
+    .hero-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      opacity: .75;
+    }
+
+    .hero-flowers { font-size: 20px; letter-spacing: 8px; color: var(--blue); margin-bottom: 14px; }
+
+    .hero-invite {
+      font-style: italic;
+      font-size: 17px;
+      color: var(--brown-lt);
+      margin-bottom: 6px;
+    }
+
+    .hero-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(58px, 16vw, 90px);
+      color: var(--brown-dk);
+      line-height: 1.05;
+      margin-bottom: 10px;
+      text-shadow: 1px 2px 0 rgba(184,136,42,.18);
+    }
+
+    .hero-celebrates {
+      font-style: italic;
+      font-size: 17px;
+      color: var(--brown-lt);
+      margin-bottom: 4px;
+    }
+
+    .hero-xv {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(56px, 16vw, 92px);
+      font-weight: 600;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 40%, #F0D060 50%, var(--gold-lt) 60%, var(--gold) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      line-height: 1;
+    }
+
+    .hero-anos {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 9px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 6px 0 24px;
+    }
+
+    .hero-date {
+      font-size: 15px;
+      color: var(--brown-lt);
+      letter-spacing: .5px;
+    }
+
+    /* ── SCROLL INDICATOR ──────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      opacity: .55;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bobDown 2.2s ease-in-out infinite;
+    }
+    .scroll-hint::after { content: '❧'; font-size: 18px; display: block; }
+
+    @keyframes bobDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(9px); }
+    }
+
+    /* ── COUNTDOWN ─────────────────────────────────────── */
+    #countdown {
+      background: linear-gradient(135deg, #1A0D08 0%, #2A1510 60%, #1A0D08 100%);
+      padding: 64px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #countdown::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle 1px at 30px 30px, rgba(184,136,42,.18) 0%, transparent 100%),
+        radial-gradient(circle 1px at 0 0, rgba(184,136,42,.12) 0%, transparent 100%);
+      background-size: 60px 60px, 30px 30px;
+      pointer-events: none;
+    }
+
+    .cd-label {
+      font-style: italic;
+      font-size: 19px;
+      color: var(--gold-pale);
+      margin-bottom: 6px;
+      opacity: .8;
+    }
+    .cd-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 44px;
+      color: var(--gold-lt);
+      margin-bottom: 40px;
+    }
+
+    .cd-grid {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cd-box {
+      background: rgba(255,253,245,.06);
+      border: 1px solid rgba(184,136,42,.28);
+      border-radius: 3px;
+      padding: 18px 14px;
+      min-width: 70px;
+      position: relative;
+    }
+    .cd-box::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 1px solid rgba(184,136,42,.12);
+      border-radius: 5px;
+    }
+
+    .cd-num {
+      font-family: 'Cinzel', serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--gold-lt);
+      line-height: 1;
+      display: block;
+    }
+    .cd-unit {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      opacity: .65;
+      display: block;
+      margin-top: 5px;
+    }
+
+    /* ── SECTION COMMON ────────────────────────────────── */
+    .sec {
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .sec-crown {
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--gold);
+    }
+    .sec-crown svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .sec-heading {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(38px, 11vw, 56px);
+      color: var(--brown-dk);
+      margin-bottom: 6px;
+    }
+
+    .sec-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: .7;
+    }
+
+    /* ── INVITATION LETTER ─────────────────────────────── */
+    #invitation {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .inv-text {
+      font-size: 18px;
+      line-height: 2;
+      color: var(--brown);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .inv-sig {
+      font-family: 'Great Vibes', cursive;
+      font-size: 44px;
+      color: var(--brown-dk);
+      margin-top: 22px;
+    }
+
+    /* ── DETAIL CARDS ──────────────────────────────────── */
+    #details { background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 100%); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255,253,245,.78);
+      border: 1px solid rgba(184,136,42,.38);
+      border-radius: 3px;
+      padding: 28px 22px;
+      position: relative;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(184,136,42,.18);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .card-icon  { width: 28px; height: 28px; display: block; margin: 0 auto 12px; }
+    .card-icon svg { width: 100%; height: 100%; stroke: var(--gold); fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+    .card-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 8px; }
+    .card-main  { font-size: 22px; font-weight: 600; color: var(--brown-dk); display: block; margin-bottom: 3px; }
+    .card-sub   { font-size: 16px; font-style: italic; color: var(--brown-lt); display: block; }
+
+    /* ── DRESS CODE ────────────────────────────────────── */
+    #dresscode { max-width: 520px; margin: 0 auto; }
+
+    .dresscode-note {
+      background: rgba(184,136,42,.07);
+      border: 1px solid rgba(184,136,42,.28);
+      border-radius: 3px;
+      padding: 22px 24px;
+      margin-top: 22px;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--brown);
+      line-height: 1.75;
+    }
+    .dresscode-note strong {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 26px;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch-chip {
+      width: 66px;
+      height: 38px;
+      border: 1px solid rgba(184,136,42,.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .swatch-chip::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom right,
+        transparent calc(50% - 0.8px),
+        rgba(255,255,255,.9) calc(50% - 0.8px),
+        rgba(255,255,255,.9) calc(50% + 0.8px),
+        transparent calc(50% + 0.8px)
+      );
+    }
+    .swatch-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--brown-lt);
+      text-transform: uppercase;
+    }
+    .swatch-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--gold);
+      opacity: .75;
+    }
+
+    /* ── RSVP ──────────────────────────────────────────── */
+    #rsvp { background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%); max-width: 520px; margin: 0 auto; }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      color: #1A6B22;
+      border: 1px solid #1A6B22;
+      padding: 15px 34px;
+      border-radius: 0;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .3s, color .3s;
+      margin-top: 26px;
+      cursor: pointer;
+    }
+    .btn-wa:hover { background: #1A6B22; color: #fff; }
+    .btn-wa svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── CBU / GIFT ────────────────────────────────────── */
+    #gift { max-width: 520px; margin: 0 auto; }
+
+    .cbu-card {
+      background: rgba(255,253,245,.78);
+      border: 1px solid rgba(184,136,42,.38);
+      border-radius: 3px;
+      padding: 26px 22px;
+      margin-top: 24px;
+      position: relative;
+    }
+    .cbu-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(184,136,42,.18);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .cbu-label  { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 12px; opacity: .8; }
+    .cbu-number { font-size: 17px; color: var(--brown-dk); letter-spacing: 2px; word-break: break-all; display: block; margin-bottom: 18px; font-weight: 500; }
+
+    .btn-copy {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 11px 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background .3s, color .3s;
+    }
+    .btn-copy:hover, .btn-copy.ok { background: var(--gold); color: #fff; }
+
+    /* ── LOCATION ──────────────────────────────────────── */
+    #location { background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 100%); max-width: 520px; margin: 0 auto; }
+
+    .address-block {
+      font-size: 20px;
+      font-style: italic;
+      color: var(--brown);
+      line-height: 1.9;
+      margin: 22px 0;
+    }
+
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 15px 34px;
+      border-radius: 0;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+    .btn-map:hover { background: var(--gold); color: #fff; }
+    .btn-map svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; flex-shrink: 0; transition: stroke .3s; }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    #footer {
+      padding: 64px 24px 90px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--parchment) 0%, #DCCDA8 100%);
+    }
+
+    .footer-flowers { font-size: 22px; letter-spacing: 10px; color: var(--blue); opacity: .65; margin-bottom: 20px; }
+
+    .footer-text { font-size: 18px; font-style: italic; color: var(--brown-lt); line-height: 1.9; }
+
+    .footer-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 58px;
+      color: var(--brown-dk);
+      margin: 14px 0;
+    }
+
+    /* ── MUSIC BUTTON ──────────────────────────────────── */
+    #music-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(245,237,216,.96);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 14px rgba(184,136,42,.22);
+      z-index: 200;
+      transition: background .3s, color .3s, box-shadow .3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #music-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    #music-btn:hover { background: var(--gold); color: #fff; }
+    #music-btn.playing {
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 2px 20px rgba(184,136,42,.45);
+      animation: pulseGold 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGold {
+      0%, 100% { box-shadow: 0 2px 14px rgba(184,136,42,.35); }
+      50%       { box-shadow: 0 2px 24px rgba(184,136,42,.6), 0 0 0 8px rgba(184,136,42,.10); }
+    }
+
+
+    /* ── PETALS ────────────────────────────────────────── */
+    #petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 150;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -60px;
+      opacity: 0;
+      border-radius: 60% 40% 55% 45%;
+      animation: petalFall linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes petalFall {
+      0%   { transform: translateY(0)      rotate(0deg)   translateX(0); opacity: 0; }
+      8%   { opacity: .7; }
+      88%  { opacity: .35; }
+      100% { transform: translateY(108vh) rotate(700deg) translateX(40px); opacity: 0; }
+    }
+
+    /* ── SHIMMER ───────────────────────────────────────── */
+    @keyframes shimmer {
+      0%   { background-position: 0%   center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ── HERO ENTRANCE ─────────────────────────────────── */
+    .h-in {
+      opacity: 0;
+      animation: fadeUp .9s ease forwards;
+    }
+    .h-in:nth-child(1)  { animation-delay: .25s; }
+    .h-in:nth-child(2)  { animation-delay: .50s; }
+    .h-in:nth-child(3)  { animation-delay: .75s; }
+    .h-in:nth-child(4)  { animation-delay: .95s; }
+    .h-in:nth-child(5)  { animation-delay: 1.15s; }
+    .h-in:nth-child(6)  { animation-delay: 1.30s; }
+    .h-in:nth-child(7)  { animation-delay: 1.45s; }
+    .h-in:nth-child(8)  { animation-delay: 1.60s; }
+    .h-in:nth-child(9)  { animation-delay: 1.75s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── BLUE FLOWER ROW ───────────────────────────────── */
+    .flowers { font-size: 20px; letter-spacing: 8px; color: var(--blue); opacity: .65; text-align: center; margin: 8px 0; }
+
+    /* wrapper for max-width on sections */
+    .sw { max-width: 520px; margin: 0 auto; }
+  </style>
+</head>
+<body class="damask">
+
+  <!-- PETALS -->
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <section id="hero" class="damask">
+    <div class="hero-frame">
+
+      <!-- corona -->
+      <div class="hero-crown-wrap h-in">
+        <img src="corona@2x.png" alt="corona">
+      </div>
+
+      <!-- rosas 4 esquinas -->
+      <div class="hero-rose tl"><img src="Rosas@2x.png" alt=""></div>
+      <div class="hero-rose tr"><img src="Rosas@2x.png" alt=""></div>
+      <div class="hero-rose bl"><img src="Rosas@2x.png" alt=""></div>
+      <div class="hero-rose br"><img src="Rosas@2x.png" alt=""></div>
+
+      <p class="hero-tag h-in">· Celebración de Quinceañera ·</p>
+      <p class="hero-flowers h-in">✿ ❀ ✿</p>
+      <p class="hero-invite h-in">Con todo mi amor, te invita a celebrar</p>
+      <h1 class="hero-name h-in">Zoe Valentina</h1>
+      <p class="hero-celebrates h-in">en el hermoso regalo de sus</p>
+      <div class="hero-xv h-in">XV</div>
+      <div class="hero-anos h-in">Años</div>
+
+      <div class="ornament-row h-in"><span>✦</span></div>
+
+      <p class="hero-date h-in">Sábado · 26 de Septiembre · 21:30 hs</p>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">Deslizá</div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ COUNTDOWN ═══════════════════════════════════════ -->
+  <section id="countdown">
+    <p class="cd-label reveal">El gran momento se acerca…</p>
+    <div class="cd-title reveal">Cuenta Regresiva</div>
+
+    <div class="cd-grid reveal">
+      <div class="cd-box">
+        <span class="cd-num" id="cd-d">--</span>
+        <span class="cd-unit">Días</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-h">--</span>
+        <span class="cd-unit">Horas</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-m">--</span>
+        <span class="cd-unit">Min</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-s">--</span>
+        <span class="cd-unit">Seg</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ INVITATION LETTER ════════════════════════════════ -->
+  <section class="sec damask">
+    <div class="sw" id="invitation">
+      <span class="sec-crown reveal">♔</span>
+      <h2 class="sec-heading reveal">La Invitación</h2>
+      <p class="sec-sub reveal">· con afecto y alegría ·</p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <p class="inv-text reveal">
+        Estimado invitado,<br><br>
+        Con inmensa alegría y el corazón lleno de ilusión,
+        tengo el honor de invitarte a compartir conmigo
+        uno de los momentos más especiales de mi vida.<br><br>
+        En este gran baile de la vida, llegaré a mis quince años
+        rodeada de flores, candelabros y, sobre todo,
+        de las personas que más amo.<br><br>
+        Tu presencia hará de esta noche algo verdaderamente
+        mágico e inolvidable.
+      </p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <div class="inv-sig reveal">Zoe Valentina</div>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ EVENT DETAILS ════════════════════════════════════ -->
+  <section class="sec" id="details">
+    <div class="sw">
+      <span class="sec-crown reveal">✦</span>
+      <h2 class="sec-heading reveal">Los Detalles</h2>
+      <p class="sec-sub reveal">· del gran evento ·</p>
+
+      <div class="cards-grid" style="margin-top:8px;">
+        <div class="card reveal">
+          <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="1"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <span class="card-label">Fecha</span>
+          <span class="card-main">Sábado 26 de Septiembre</span>
+          <span class="card-sub">2026</span>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg></span>
+          <span class="card-label">Hora</span>
+          <span class="card-main">21:30 horas</span>
+          <span class="card-sub">¡Te esperamos puntual!</span>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V9l8-6 8 6v12"/><path d="M9 21V13h6v8"/></svg></span>
+          <span class="card-label">Lugar</span>
+          <span class="card-main">Club Chaco Vial</span>
+          <span class="card-sub">Avalos 1201 · Resistencia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ DRESS CODE ═══════════════════════════════════════ -->
+  <section class="sec damask">
+    <div class="sw" id="dresscode">
+      <span class="sec-crown reveal">✿</span>
+      <h2 class="sec-heading reveal">Dress Code</h2>
+      <p class="sec-sub reveal">· elegante sport ·</p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <div class="dresscode-note reveal">
+        <strong>Colores Reservados</strong>
+        Los colores <em>dorado</em> y <em>rosado</em> están reservados
+        exclusivamente para la quinceañera y su corte.<br>
+        ¡Gracias por respetar este detalle tan especial para la noche!
+      </div>
+
+      <div class="swatches reveal">
+        <div class="swatch">
+          <div class="swatch-chip" style="background:linear-gradient(135deg,#D4AF37,#B8960C);"></div>
+          <span class="swatch-label">Dorado</span>
+          <span class="swatch-tag">Reservado</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-chip" style="background:linear-gradient(135deg,#F4A0B4,#D86080);"></div>
+          <span class="swatch-label">Rosado</span>
+          <span class="swatch-tag">Reservado</span>
+        </div>
+      </div>
+
+      <p class="reveal" style="font-style:italic;font-size:16px;color:var(--brown-lt);margin-top:26px;line-height:1.8;">
+        La decoración de la noche será con flores y candelabros con caireles ✨
+      </p>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ RSVP ═════════════════════════════════════════════ -->
+  <section class="sec" id="rsvp" style="background:linear-gradient(180deg,var(--parchment) 0%,var(--cream) 100%);">
+    <div class="sw">
+      <span class="sec-crown reveal"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="1"/><polyline points="2 5 12 13 22 5"/></svg></span>
+      <h2 class="sec-heading reveal">Confirmar Asistencia</h2>
+      <p class="sec-sub reveal">· tu presencia nos llena de alegría ·</p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <p class="reveal" style="font-style:italic;font-size:18px;color:var(--brown);line-height:1.85;">
+        Por favor confirmá tu presencia enviando<br>
+        un mensaje por WhatsApp.
+      </p>
+
+      <a href="https://wa.me/5493625241413?text=Confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Zoe%20Valentina%20%F0%9F%8C%B9"
+         target="_blank"
+         rel="noopener"
+         class="btn-wa reveal">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Confirmar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ GIFT / CBU ════════════════════════════════════════ -->
+  <section class="sec damask" id="gift">
+    <div class="sw">
+      <span class="sec-crown reveal"><svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="14" rx="1"/><path d="M2 12h20M12 8v14"/><path d="M12 8C12 8 9 4 7 5s-1 3 2 3h3z"/><path d="M12 8C12 8 15 4 17 5s1 3-2 3h-3z"/></svg></span>
+      <h2 class="sec-heading reveal">Acreditaciones</h2>
+      <p class="sec-sub reveal">· para quienes deseen agasajarme ·</p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <p class="reveal" style="font-style:italic;font-size:18px;color:var(--brown);line-height:1.85;">
+        Si deseás hacerme llegar un regalo especial,<br>
+        podés transferir con el siguiente CBU:
+      </p>
+
+      <div class="cbu-card reveal">
+        <span class="cbu-label">CBU</span>
+        <span class="cbu-number" id="cbu-num">0000003100006634143720</span>
+        <button class="btn-copy" id="copy-btn" onclick="copyCBU()">Copiar CBU</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ LOCATION ══════════════════════════════════════════ -->
+  <section class="sec" id="location" style="background:linear-gradient(180deg,var(--cream) 0%,var(--parchment) 100%);">
+    <div class="sw">
+      <span class="sec-crown reveal"><svg viewBox="0 0 24 24"><path d="M12 2C8.69 2 6 4.69 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.31-2.69-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg></span>
+      <h2 class="sec-heading reveal">¿Cómo llegar?</h2>
+      <p class="sec-sub reveal">· te esperamos aquí ·</p>
+
+      <div class="ornament-row reveal"><span>✦</span></div>
+
+      <div class="address-block reveal">
+        Club Chaco Vial<br>
+        <em>Avalos 1201 · Resistencia, Chaco</em>
+      </div>
+
+      <a href="https://share.google/Pv2XmgJV722kxyZvb"
+         target="_blank"
+         rel="noopener"
+         class="btn-map reveal">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.69 2 6 4.69 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.31-2.69-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg>
+        Abrir en Google Maps
+      </a>
+    </div>
+  </section>
+
+  <div class="band"></div>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <section id="footer">
+    <div class="footer-flowers reveal">✿ ❀ ✿ ❀ ✿</div>
+
+    <p class="footer-text reveal">Con todo el amor de mi corazón,</p>
+    <div class="footer-name reveal">Zoe Valentina</div>
+
+    <div class="ornament-row reveal" style="max-width:320px;margin:20px auto;"><span>✦</span></div>
+
+    <p class="footer-text reveal">
+      ¡Te espero para festejar juntos<br>
+      la noche más especial de mi vida!
+    </p>
+
+    <div class="footer-flowers reveal" style="margin-top:32px; font-size:18px; letter-spacing:12px;">❧ · · · ❧</div>
+  </section>
+
+  <!-- ══ MUSIC BUTTON ══════════════════════════════════════ -->
+  <button id="music-btn" title="Reproducir música" aria-label="Reproducir música de fondo">
+    <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  </button>
+  <audio id="bg-audio" loop preload="none">
+    <source src="Yellow-_Cover-by-Vitamin-String-Quartet_-_Bridgerton-Season-3-_Netflix-Series__.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── COUNTDOWN ──────────────────────────────────────── */
+    const EVENT = new Date('2026-09-26T21:30:00');
+
+    function tick() {
+      const diff = EVENT - Date.now();
+      if (diff <= 0) {
+        ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+        return;
+      }
+      const pad = n => String(n).padStart(2,'0');
+      document.getElementById('cd-d').textContent = pad(Math.floor(diff / 864e5));
+      document.getElementById('cd-h').textContent = pad(Math.floor(diff % 864e5 / 36e5));
+      document.getElementById('cd-m').textContent = pad(Math.floor(diff % 36e5 / 6e4));
+      document.getElementById('cd-s').textContent = pad(Math.floor(diff % 6e4 / 1e3));
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ── SCROLL REVEAL ──────────────────────────────────── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* ── PETALS ─────────────────────────────────────────── */
+    const PETAL_COLORS = [
+      ['#EDE0C4', '#C4972A'],  // pergamino → dorado
+      ['#F5EDD8', '#EDE0C4'],  // crema → pergamino
+      ['#A8C5D8', '#7BA3C0'],  // azul claro → azul polvo
+      ['#EAD98C', '#B8882A'],  // dorado pálido → dorado
+      ['#C8DCE8', '#8FAFC4'],  // azul niebla
+    ];
+    const container = document.getElementById('petals');
+
+    function spawnPetal() {
+      const el = document.createElement('div');
+      el.className = 'petal';
+      const [c1, c2] = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+      const size = 9 + Math.random() * 9;
+      const dur  = 9 + Math.random() * 12;
+      const del  = Math.random() * 4;
+      el.style.cssText = `
+        left:${Math.random()*100}vw;
+        width:${size}px; height:${size * (.7 + Math.random()*.5)}px;
+        background:radial-gradient(ellipse at 30% 30%, ${c1}, ${c2});
+        border-radius:${50+Math.random()*20}% ${30+Math.random()*25}% ${50+Math.random()*20}% ${30+Math.random()*25}%;
+        animation-duration:${dur}s;
+        animation-delay:${del}s;
+      `;
+      container.appendChild(el);
+      setTimeout(() => el.remove(), (dur + del + 1) * 1000);
+    }
+
+    for (let i = 0; i < 10; i++) spawnPetal();
+    setInterval(spawnPetal, 1600);
+
+    /* ── MÚSICA ─────────────────────────────────────────── */
+    const ICON_PLAY  = `<svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
+    const ICON_PAUSE = `<svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round"><line x1="8" y1="5" x2="8" y2="19"/><line x1="16" y1="5" x2="16" y2="19"/></svg>`;
+
+    const audio = document.getElementById('bg-audio');
+    const btn   = document.getElementById('music-btn');
+    let playing = false;
+
+    btn.addEventListener('click', function() {
+      if (!playing) {
+        audio.play();
+        playing = true;
+        btn.innerHTML = ICON_PAUSE;
+        btn.classList.add('playing');
+      } else {
+        audio.pause();
+        playing = false;
+        btn.innerHTML = ICON_PLAY;
+        btn.classList.remove('playing');
+      }
+    });
+
+    /* ── COPY CBU ───────────────────────────────────────── */
+    function copyCBU() {
+      const cbu = document.getElementById('cbu-num').textContent.trim();
+      const copyBtn = document.getElementById('copy-btn');
+      const done = () => {
+        copyBtn.textContent = '✓ ¡Copiado!';
+        copyBtn.classList.add('ok');
+        setTimeout(() => { copyBtn.textContent = 'Copiar CBU'; copyBtn.classList.remove('ok'); }, 2600);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(cbu).then(done).catch(() => fallback(cbu, done));
+      } else {
+        fallback(cbu, done);
+      }
+    }
+
+    function fallback(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      cb();
+    }
+  </script>
+</body>
+</html>
